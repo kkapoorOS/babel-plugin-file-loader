@@ -29,7 +29,7 @@ const applyTransform = (p, t, state, value, calleeName) => {
         return;
       }
 
-      const filePath = resolve(scriptDirectory, value)
+      const filePath = require.resolve(value, {paths: [scriptDirectory]});
 
       const uri = transform(rootPath, filePath, options)
 
