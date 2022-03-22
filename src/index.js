@@ -42,6 +42,7 @@ const applyTransform = (p, t, state, value, calleeName) => {
       const variableName = getVariableName(p)
 
       if (!variableName) {
+        console.log(`ignoreDir: ${ignoreDir}, current dir: ${scriptDirectory}`);
         throw new Error('Cannot determine variable name to assign to')
       }
 
