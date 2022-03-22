@@ -23,8 +23,13 @@ const applyTransform = (p, t, state, value, calleeName) => {
   if (options.extensions && options.extensions.indexOf(ext.slice(1)) >= 0) {
     try {
       const rootPath = state.file.opts.sourceRoot || process.cwd()
-      const scriptDirectory = dirname(resolve(state.file.opts.filename))
-      const filePath = resolve(scriptDirectory, value)
+      const scriptDirectory = dirname(resolve(state.file.opts.filename));
+
+      if (options.ignoreDir.some(val => scriptDirectory.includes(val))) {
+        return;
+      }
+
+      const filePath = require.resolve(value, {paths: [scriptDirectory]});
 
       const uri = transform(rootPath, filePath, options)
 
