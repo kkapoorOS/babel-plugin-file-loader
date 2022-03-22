@@ -25,6 +25,7 @@ const applyTransform = (p, t, state, value, calleeName) => {
       const rootPath = state.file.opts.sourceRoot || process.cwd()
       const scriptDirectory = dirname(resolve(state.file.opts.filename));
 
+      console.log(scriptDirectory, options.ignoreDir.some(val => scriptDirectory.includes(val)));
       if (options.ignoreDir.some(val => scriptDirectory.includes(val))) {
         console.log("Skipping ignored directory ", scriptDirectory);
         return;
