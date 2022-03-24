@@ -25,9 +25,7 @@ const applyTransform = (p, t, state, value, calleeName) => {
       const rootPath = state.file.opts.sourceRoot || process.cwd()
       const scriptDirectory = dirname(resolve(state.file.opts.filename));
 
-      console.log(scriptDirectory, options.ignoreDir.some(val => scriptDirectory.includes(val)));
       if (options.ignoreDir.some(val => scriptDirectory.includes(val))) {
-        console.log("Skipping ignored directory ", scriptDirectory);
         return;
       }
 
@@ -43,7 +41,6 @@ const applyTransform = (p, t, state, value, calleeName) => {
       const variableName = getVariableName(p)
 
       if (!variableName) {
-        console.log(`ignoreDir: ${options.ignoreDir}, current dir: ${scriptDirectory}`);
         throw new Error('Cannot determine variable name to assign to')
       }
 
